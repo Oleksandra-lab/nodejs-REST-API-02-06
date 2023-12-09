@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
-const addSchema = Joi.obj({
-    name: Joi.sting().required(),
+const addSchema = Joi.object({
+    name: Joi.string().required(),
     email: Joi.string().required(), 
     phone: Joi.string().required(),
   })
