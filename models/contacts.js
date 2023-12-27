@@ -1,7 +1,10 @@
 const Contact = require("./contactModel");
 
-const listContacts = async () => {
-  const contacts = await Contact.find();
+const listContacts = async (req, res) => {
+  const {_id: owner} = req.user;
+  const {page=1, limit=20} = req.query;
+  const skip = (page - 1)* limit;
+  const contacts = await Contact.find({owner}, {skip, limit}). populate("owner", "email subscriptions" );
   return contacts;
 };
 
@@ -15,9 +18,9 @@ const removeContact = async (contactId) => {
   return deletedContact;
 };
 
-const addContact = async (data) => {
-  
-  const newContact = await Contact.create(data)
+const addContact = async (req, res) => {
+  const{_id: owner}=req.user;  
+  const newContact = await Contact.create(...req.body, owner)
   return newContact
 };
 

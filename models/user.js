@@ -38,17 +38,17 @@ const registerSchema = Joi.object({
 
 const loginSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
-  subscription: Joi.string().optional,
+  password: Joi.string().min(6).required(),
 });
 
 const schemas = {
   registerSchema,
   loginSchema,
-}
+};
 
 const User = model("user", userSchema);
 
 module.exports = {
   User,
   schemas,
-}
+};
