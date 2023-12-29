@@ -3,7 +3,7 @@ const services = require("../models/contacts");
 const { HttpError, ctrlWrapper } = require("../helpers");
 
 const getAllContacts = async (req, res) => {
-  const result = await services.listContacts();
+  const result = await services.listContacts(req.user);
   res.json(result);
 };
 
