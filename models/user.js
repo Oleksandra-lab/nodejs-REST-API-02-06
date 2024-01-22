@@ -18,24 +18,28 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       unique: true,
     },
-    subscription: {
-      type: String,
-      enum: ["starter", "pro", "business"],
-      default: "starter",
-    },
+    // subscription: {
+    //   type: String,
+    //   enum: ["starter", "pro", "business"],
+    //   default: "starter",
+    // },
     token: String,
     avatarURL: {
       type: String,
       required: true,
     },
-    verify: {
-      type: Boolean,
-      default: false,
-    },
-    verificationToken: {
+    name:{
       type: String,
-      required: [true, 'Verify token is required'],
-    },
+      required: true,
+    }
+    // verify: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // verificationToken: {
+    //   type: String,
+      
+    // },
   },
 
   { versionKey: false, timestamps: true }
@@ -46,7 +50,7 @@ userSchema.post("save", handleMongooseError);
 const registerSchema = Joi.object({
   password: Joi.string().min(6).required(),
   email: Joi.string().pattern(emailRegexp).required(),
-  subscription: Joi.string().optional,
+  name: Joi.string().required(),
 });
 
 

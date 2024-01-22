@@ -6,18 +6,14 @@ const contactSchema = new Schema(
       type: String,
       required: true,
     },
-    email: {
+   
+    number: {
       type: String,
       required: true,
     },
-    phone: {
-      type: String,
-      required: true,
-    },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
+    // group:{
+
+    // },
     owner:{
       type: Schema.Types.ObjectId,
       ref: "user",
